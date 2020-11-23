@@ -12,6 +12,9 @@ func routes() *gin.Engine {
 	// initial router engine
 	r := gin.Default()
 
+	// initial middleware
+	middlewares(r)
+
 	// route not-found
 	r.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Page not found"})
