@@ -25,9 +25,13 @@ func NewUser() UserService {
 }
 
 func (us *userService) GetAll(c *gin.Context) {
-	c.JSON(http.StatusOK, utils.AppSuccess{
-		Error:   false,
-		Message: "welcome to all users",
-		Data:    repositories.GetAllUsers(),
-	})
+	var users []models.User
+	err := repositories.GetAllUsers(&users)
+
+	if err != nil {
+		utils.Success(c, http.StatusNotFound, "users empty", users)
+		return
+	}
+
+	utils.Success(c, http.StatusOK, "welcome to all users", users)
 }
