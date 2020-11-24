@@ -18,9 +18,9 @@ func (uc userController) Inject(e *gin.Engine) {
 	user := e.Group("api/v1/users")
 	{
 		user.GET("/", uc.service.GetAll)
-		user.GET("/:id", uc.service.GetAll)
-		user.POST("/", uc.service.GetAll)
-		user.PUT("/:id", uc.service.GetAll)
-		user.DELETE("/:id", uc.service.GetAll)
+		user.GET("/:id", uc.service.GetOne)
+		// user.POST("/", uc.service.CreateOne)
+		// user.PUT("/:id", uc.service.UpdateOne)
+		// user.DELETE("/:id", uc.service.DeleteOne)
 	}
 }
