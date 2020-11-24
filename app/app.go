@@ -10,6 +10,9 @@ func StartApp() {
 	// setting environment
 	env()
 
+	// inital db
+	InitDB()
+
 	// routing
 	r := routes()
 
