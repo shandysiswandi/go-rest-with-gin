@@ -1,14 +1,25 @@
 package models
 
+import (
+	"github.com/shandysiswandi/go-rest-with-gin/utils"
+	"gorm.io/gorm"
+)
+
 // User is ..
 type User struct {
-	ID       string `json:"id"`
+	Model
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
 
 // TableName is
-func (b *User) TableName() string {
+func (u *User) TableName() string {
 	return "users"
+}
+
+// BeforeCreate is
+func (u *User) BeforeCreate(tx *gorm.DB) error {
+	u.ID = utils.GenUUID()
+	return nil
 }
