@@ -13,3 +13,12 @@ func GetAllUsers(mu *[]models.User) error {
 
 	return nil
 }
+
+// GetOneUser is
+func GetOneUser(mu *models.User, id string) error {
+	if err := config.DB.Where("id = ?", id).First(mu).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
